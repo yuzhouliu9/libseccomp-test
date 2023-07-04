@@ -11,12 +11,13 @@ steps:
 - name: publish
   image: plugins/kaniko-ecr
   settings:
-    create_repository: true
-    registry: 795250896452.dkr.ecr.us-east-1.amazonaws.com
+    create_repository: true    
     repo: devops/${DRONE_REPO_NAME}
     tags:
     - git-${DRONE_COMMIT_SHA:0:7}
     - latest
+    registry:
+      from_secret: ecr_registry
     access_key:
       from_secret: ecr_access_key
     secret_key:
